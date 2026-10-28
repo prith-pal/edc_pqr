@@ -2,7 +2,7 @@
 
 # edc_pqr
 
-**Post-quantum resistant encryption from the command line, with sane defaults.**
+**Post-quantum resistant encryption from the command line. A minimal-dependency Rust CLI with sane defaults.**
 
 Part of `edc_`: everyday-carry CLIs. Small, sharp, independent tools.
 
