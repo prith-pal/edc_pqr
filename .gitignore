@@ -1,2 +1,5 @@
 /target
 .DS_Store
+.agents/settings.local.json
+.agents/worktrees/
+.claude/settings.local.json

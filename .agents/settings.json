@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "deny": [
+      "Bash(git push *--force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(git add -A *)",
+      "Bash(git add --all *)",
+      "Bash(git add . *)",
+      "Bash(cargo publish *)",
+      "Read(~/.config/edc-review/**)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && cargo fmt --all"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "feature-worker",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | grep -q '\"stop_hook_active\": *true' && exit 0; cd \"$CLAUDE_PROJECT_DIR\" && cargo clippy -q --all-targets -- -D warnings 1>&2 && cargo test -q 1>&2 || { echo 'Quality gate failed: fix the clippy / test errors above before finishing.' >&2; exit 2; }"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | grep -q '\"stop_hook_active\": *true' && exit 0; cd \"$CLAUDE_PROJECT_DIR\" && git diff --quiet HEAD -- src tests Cargo.toml 2>/dev/null && exit 0; cargo clippy -q --all-targets -- -D warnings 1>&2 && cargo test -q 1>&2 || { echo 'Quality gate failed: fix the clippy / test errors above before finishing.' >&2; exit 2; }"
+          }
+        ]
+      }
+    ]
+  }
+}

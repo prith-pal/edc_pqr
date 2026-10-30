@@ -16,6 +16,17 @@ src/
   shared/        used by 2+ domains, no domain knowledge
 ```
 
+## Agent Framework
+
+| Path | Purpose |
+|:--|:--|
+| `_features/<id>-<slug>.md` | Tickets. One ticket = one PR |
+| `.agents/` | Agent config: skills, subagents, `settings.json` (deny rules + hooks), `code_review.md` |
+| `.claude` | Symlink to `.agents` |
+| `CONTRIBUTING.md` | Commit and PR title rules |
+
+- `settings.json` hooks: `cargo fmt` after every edit; clippy + tests before an agent may finish.
+
 ## Commands
 
 | Task | Command |
