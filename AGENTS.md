@@ -25,7 +25,8 @@ src/
 | `.claude` | Symlink to `.agents` |
 | `CONTRIBUTING.md` | Commit and PR title rules |
 
-- `settings.json` hooks: `cargo fmt` after every edit; clippy + tests before an agent may finish.
+- `settings.json` hooks: `cargo fmt` and an absolute-home-path check after every edit; clippy + tests before an agent may finish.
+- Never write absolute home paths (`/Users/<name>/…`, `/home/<name>/…`) into the repo. Use repo-relative or `~/` paths.
 
 ## Commands
 

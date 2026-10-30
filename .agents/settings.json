@@ -20,6 +20,10 @@
           {
             "type": "command",
             "command": "cd \"$CLAUDE_PROJECT_DIR\" && cargo fmt --all"
+          },
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git ls-files -co --exclude-standard -z | xargs -0 grep -nIE '/(Users|home)/[A-Za-z0-9._-]+/' 2>/dev/null | head -5 | grep . >&2 && { echo 'Absolute home path in the repo: use a repo-relative or ~/ path instead.' >&2; exit 2; } || exit 0"
           }
         ]
       }
