@@ -35,7 +35,8 @@ cargo clippy --all-targets -- -D warnings
 cargo test
 ```
 
-This repo is built with AI coding agents. See [AGENTS.md](AGENTS.md) for the conventions they follow.
+This repo is built with AI coding agents. See [AGENTS.md](AGENTS.md) for the conventions they follow
+and [CONTRIBUTING.md](CONTRIBUTING.md) for the ticket, commit and PR rules.
 
 ## License
 
