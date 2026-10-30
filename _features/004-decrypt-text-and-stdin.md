@@ -23,7 +23,7 @@ echo 'hi' | edc_pqr e | edc_pqr d                                   # hi
 
 | Option | Value | Meaning |
 |:--|:--|:--|
-| `-t`, `--text` | `ARMOR` | Armored ciphertext given inline |
+| `-t`, `--text` | `ENCRYPTED_TEXT` | Encrypted text given inline (the `-----BEGIN PGP MESSAGE-----` block) |
 | (none) | | Read ciphertext from stdin |
 
 ## Behavior
