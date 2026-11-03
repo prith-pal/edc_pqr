@@ -5,20 +5,20 @@ The rule: a `feature_*_review_*` model family differs from the `feature_*_draft`
 
 ## Roster
 
-This table is the single source of truth for models. Agent files hold none. Each phase reads its row, and stops if the row or its model is missing. To change a model, edit the row.
+This table is the single source of truth for models. Agent files hold none. Each phase reads its row, and stops if the row or its model is missing. To change a model, edit the row. The first parenthesis is the effort, and the second names the exact model behind an alias, since an alias can move over time. In Claude Code, effort on these rows is a suggestion: set it on your session.
 
 Built: `/lensloop plan review` runs on Kilo. Not built: the three `/lensloop impl review` workers below. Until they exist, that phase runs one Claude agent, on the same family as its drafter, so it is not yet decorrelated.
 
 **Orchestrator:** the session that ran `/lensloop <phase> draft`. It runs the review and incorporates the feedback, so it should be steerable enough to accept findings and strong enough to judge them. If the drafting model is too weak for that, use a stronger model as the orchestrator. Every `feature_*_review_*` finding still gets a `RESOLVED` line: fixed, or rejected with evidence.
 
-| Command | Agent | Harness | Model | Effort | Provider | Projected cost per run | Why |
-|:--|:--|:--|:--|:--|:--|:--|:--|
-| `/lensloop plan draft` | `feature_plan_draft` | Claude Code | `opus` | Session | Claude plan | Included in plan | The ticket's design decisions happen here |
-| `/lensloop plan review` | `feature_plan_review_approval` | Kilo | `openrouter/openai/gpt-6.1-sol` | `max` | OpenRouter | ~$0.30–$1.30 (estimate) | A plan mistake spreads to every later phase, so the strongest reviewer goes here |
-| `/lensloop impl draft` | `feature_impl_draft` | Claude Code | `sonnet` | Session | Claude plan | Included in plan | The approved plan has already made the big decisions |
-| `/lensloop impl review` | `feature_impl_review_approval` | Kilo (not built) | `openrouter/z-ai/glm-5.3-flash` | `max` | OpenRouter | ~$0.03–$0.07 | A cheap, independent verdict |
-| `/lensloop impl review` | `feature_impl_review_approval` | Kilo (not built) | `deepseek/deepseek-flash` | `max` | DeepSeek | ~$0.04 | A second cheap verdict from another family |
-| `/lensloop impl review` | `feature_impl_review_comment` | Kilo (not built) | `openrouter/google/gemini-3.8-flash` | `high` | OpenRouter | ~$0.10 | Hypotheses only, with no vote. It adds a separate vantage, but tends to agree, so its agreement is ignored and each objection is checked |
+| Command | Agent | Harness | Model (effort) | Provider | Projected cost per run | Why |
+|:--|:--|:--|:--|:--|:--|:--|
+| `/lensloop plan draft` | `feature_plan_draft` | Claude Code | `opus` (high) (Opus 5.5) | Claude plan | None | The ticket's design decisions happen here |
+| `/lensloop plan review` | `feature_plan_review_approval` | Kilo | `openrouter/openai/gpt-6.1-sol` (max) | OpenRouter | ~$0.30–$1.30 (estimate) | A plan mistake spreads to every later phase, so the strongest reviewer goes here |
+| `/lensloop impl draft` | `feature_impl_draft` | Claude Code | `sonnet` (high) (Sonnet 5.5) | Claude plan | None | The approved plan has already made the big decisions |
+| `/lensloop impl review` | `feature_impl_review_approval` | Kilo (not built) | `openrouter/z-ai/glm-5.3-flash` (max) | OpenRouter | ~$0.03–$0.07 | A cheap, independent verdict |
+| `/lensloop impl review` | `feature_impl_review_approval` | Kilo (not built) | `deepseek/deepseek-flash` (max) (DeepSeek V4.1 Flash 1017) | DeepSeek | ~$0.04 | A second cheap verdict from another family |
+| `/lensloop impl review` | `feature_impl_review_comment` | Kilo (not built) | `openrouter/google/gemini-3.8-flash` (high) | OpenRouter | ~$0.10 | Hypotheses only, with no vote. It adds a separate vantage, but tends to agree, so its agreement is ignored and each objection is checked |
 
 | Projection | API spend |
 |:--|:--|
