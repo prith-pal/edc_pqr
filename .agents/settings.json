@@ -30,7 +30,7 @@
     ],
     "SubagentStop": [
       {
-        "matcher": "feature-worker",
+        "matcher": "feature_implementer",
         "hooks": [
           {
             "type": "command",

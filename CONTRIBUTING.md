@@ -18,7 +18,7 @@ Examples:
 ```text
 feat: [003] encrypt text and stdin to the default identity
 fix: [004] exit 3 on truncated messages
-feat(harness): add feature-review skill
+feat(harness): add feature_plan_draft skill
 chore(harness): link .claude to .agents
 ```
 

@@ -21,7 +21,12 @@ src/
 | Path | Purpose |
 |:--|:--|
 | `_features/<id>-<slug>.md` | Tickets. One ticket = one PR |
-| `.agents/` | Agent config: skills, subagents, `settings.json` (deny rules + hooks), `code_review.md` |
+| `.agents/` | Agent config: `settings.json` (deny rules + hooks) |
+| `.agents/skills/feature_<plan\|implement>_<draft\|review>/` | The four human-invoked phases. Each skill is a gate: it checks the run folder, spawns one seat, saves its output |
+| `.agents/agents/` | The seats: `feature_planner` (read-only), `feature_implementer`, `feature_reviewer` (read-only) |
+| `.agents/plan_packet.md` | Plan packet format, shared by the plan author and the plan reviewer |
+| `.agents/implement_rubric.md` | What counts as a blocking finding on a PR |
+| `.agents/runs/<id>/` | Local only (gitignored): versioned outputs per ticket (`plan.v1.md`, `plan_review.v1.md`, `implement.v1.md`, `implement_review.v1.md`, ...) |
 | `.claude` | Symlink to `.agents` |
 | `CONTRIBUTING.md` | Commit and PR title rules |
 
