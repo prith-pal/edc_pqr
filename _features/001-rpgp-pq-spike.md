@@ -26,8 +26,8 @@ and lock that behavior in with tests before any CLI work starts.
 ## Scope
 - Add `pgp` as a dependency with whatever feature flag enables RFC 9980 PQC.
 - Integration test: generate a key with the profile above, encrypt a short message to it, decrypt it, compare.
-- Fixtures: commit at least one public key, secret key and message produced by an independent RFC 9980
-  implementation (the RFC's own test vectors if it has them, otherwise Sequoia, GopenPGP or OpenPGP.js)
+- Fixtures: commit at least one public key, secret key, and message produced by an independent RFC 9980
+  implementation (the RFC's own test vectors if it has them, otherwise Sequoia, GopenPGP, or OpenPGP.js)
   under `tests/fixtures/rfc9980/`. Test that rPGP decrypts the fixture message with the fixture secret key.
 - Record findings in `AGENTS.md` under "Security Rules": crate version, feature flag, its production status,
   fixture source.
@@ -36,7 +36,7 @@ and lock that behavior in with tests before any CLI work starts.
 - [ ] `cargo test` runs the generate -> encrypt -> decrypt round trip and passes.
 - [ ] `cargo test` decrypts the independent fixture and passes.
 - [ ] A tampered fixture (one flipped byte in the ciphertext) fails to decrypt.
-- [ ] `AGENTS.md` records the crate version, feature flag, production status and fixture source.
+- [ ] `AGENTS.md` records the crate version, feature flag, production status, and fixture source.
 - [ ] No CLI changes in this ticket.
 
 ## Notes

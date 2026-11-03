@@ -1,6 +1,6 @@
 ---
 name: lensloop
-description: Runs the lensloop review flow on one `_features/` ticket. A draft writes the work, then a blind reviewer judges it, from another model family where the roster has one. Commands are `/lensloop <phase> <step> <ticket-id>`, covering plan draft, plan review, impl draft and impl review. Use only when the human asks to run a phase.
+description: Runs the lensloop review flow on one `_features/` ticket. A draft writes the work, then a blind reviewer judges it, from another model family where the roster has one. Commands are `/lensloop <phase> <step> <ticket-id>`, covering plan draft, plan review, impl draft, and impl review. Use only when the human asks to run a phase.
 argument-hint: <phase> <step> <ticket-id>
 ---
 

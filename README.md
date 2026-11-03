@@ -36,7 +36,7 @@ cargo test
 ```
 
 This repo is built with AI coding agents. See [AGENTS.md](AGENTS.md) for the conventions they follow
-and [CONTRIBUTING.md](CONTRIBUTING.md) for the ticket, commit and PR rules.
+and [CONTRIBUTING.md](CONTRIBUTING.md) for the ticket, commit, and PR rules.
 
 ## License
 

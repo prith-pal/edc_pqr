@@ -42,7 +42,7 @@ You draft exactly one plan packet per task.
 
 ## Rules
 - Use Bash only for read-only commands (`git log`, `git show`, `cargo search`, `cargo tree --locked`, `cargo metadata --locked`, `ls`).
-  Never write, install, commit or push.
+  Never write, install, commit, or push.
 - Write no absolute home paths. Use repo-relative paths.
 - If the ticket `status` is not `todo`, or a `depends_on` ticket is not `done`, return only `BLOCKED: <reason>`.
 

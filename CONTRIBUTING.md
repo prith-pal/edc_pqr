@@ -54,4 +54,4 @@ cargo clippy --all-targets -- -D warnings
 cargo test
 ```
 
-- Tests, README usage and a CHANGELOG `[Unreleased]` line ship in the same PR as the feature.
+- Tests, README usage, and a CHANGELOG `[Unreleased]` line ship in the same PR as the feature.

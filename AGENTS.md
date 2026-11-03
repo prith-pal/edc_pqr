@@ -3,7 +3,7 @@
 Instructions for AI coding agents working in this repo.
 
 ## Purpose
-A single-binary CLI for post-quantum resistant key generation, encryption and decryption.
+A single-binary CLI for post-quantum resistant key generation, encryption, and decryption.
 Defaults must be safe without flags.
 
 ## Project Structure
@@ -21,7 +21,7 @@ src/
 | Path | Purpose |
 |:--|:--|
 | `_features/<id>-<slug>.md` | Tickets. One ticket = one PR |
-| `.agents/skills/lensloop/` | The whole method as one skill: `/lensloop <phase> <step> <id>`. `SKILL.md` routes to `references/`, which also holds the plan packet format, the rubrics and the roster in `slots.md` |
+| `.agents/skills/lensloop/` | The whole method as one skill: `/lensloop <phase> <step> <id>`. `SKILL.md` routes to `references/`, which also holds the plan packet format, the rubrics, and the roster in `slots.md` |
 | `.agents/skills/lensloop/agents/` | The agents that fill the slots. All are read-only except `feature_impl_draft` |
 | `.agents/agents/` | One symlink per agent, because harnesses only register agents from here |
 | `.agents/settings.json` | Deny rules and hooks |

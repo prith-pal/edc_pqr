@@ -4,7 +4,7 @@ The contract between `feature_plan_draft` (author) and `feature_plan_review_*` (
 One packet per plan version, stored at `.agents/skills/lensloop/temp/<id>/plan_draft.v<N>.md` (local only, gitignored).
 
 ## Rules
-- The packet must stand alone: `feature_plan_review_*` gets the ticket, this packet and the repo, never the reasoning of `feature_plan_draft`.
+- The packet must stand alone: `feature_plan_review_*` gets the ticket, this packet, and the repo, never the reasoning of `feature_plan_draft`.
 - No narrative, no confidence statements ("this should work"), no pasted logs. Trimmed excerpts only.
 - Every `CHANGES` item serves a `GOALS` item. A change that serves no goal is scope creep; a goal that no change delivers is a gap.
 - `PRIOR_CHECKS` are claims. `feature_plan_review_*` re-runs them before trusting any result.
