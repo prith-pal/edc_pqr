@@ -21,13 +21,16 @@ src/
 | Path | Purpose |
 |:--|:--|
 | `_features/<id>-<slug>.md` | Tickets. One ticket = one PR |
-| `.agents/` | Agent config: `settings.json` (deny rules + hooks) |
-| `.agents/skills/feature_<plan\|implement>_<draft\|review>/` | The four human-invoked phases. Each skill is a gate: it checks the run folder, spawns one seat, saves its output |
-| `.agents/agents/` | The seats: `feature_planner` (read-only), `feature_implementer`, `feature_reviewer` (read-only) |
-| `.agents/plan_packet.md` | Plan packet format, shared by the plan author and the plan reviewer |
-| `.agents/implement_rubric.md` | What counts as a blocking finding on a PR |
-| `.agents/runs/<id>/` | Local only (gitignored): versioned outputs per ticket (`plan.v1.md`, `plan_review.v1.md`, `implement.v1.md`, `implement_review.v1.md`, ...) |
-| `.claude` | Symlink to `.agents` |
+| `.agents/skills/lensloop/` | The whole method as one skill: `/lensloop <phase> <step> <id>`. `SKILL.md` routes to `references/`, which also holds the plan packet format, the rubrics and the roster in `slots.md` |
+| `.agents/skills/lensloop/agents/` | The agents that fill the slots. All are read-only except `feature_impl_draft` |
+| `.agents/agents/` | One symlink per agent, because harnesses only register agents from here |
+| `.agents/settings.json` | Deny rules and hooks |
+| `.agents/skills/lensloop/lenses/` | Earned review practices: `active/`, `rejected/`, and the `last_lens_id` counter |
+| `.agents/skills/lensloop/temp/<id>/` | Local only (gitignored): each phase's working files (`plan_draft.v1.md`, `plan_review.v1.md`, `impl_draft.v1.md`, `impl_review.v1.md`, ...) |
+| `.agents/skills/lensloop/references/slots.md` | The single source of truth for each slot's model and effort |
+| `.agents/scripts/` | This repo's own scripts: the review bot's token |
+| `.claude/agents`, `.kilo/agents`, `.opencode/agents` | Symlinks to `.agents/agents`. These folders keep their own generated files |
+| `.claude/skills`, `.claude/settings.json` | Symlinks into `.agents/`. Kilo and OpenCode read `.agents/skills` directly |
 | `CONTRIBUTING.md` | Commit and PR title rules |
 
 - `settings.json` hooks: `cargo fmt` and an absolute-home-path check after every edit; clippy + tests before an agent may finish.
@@ -40,6 +43,8 @@ src/
 | Format | `cargo fmt --all` |
 | Lint | `cargo clippy --all-targets -- -D warnings` |
 | Test | `cargo test` |
+
+These three are the quality gate. README usage and a CHANGELOG `[Unreleased]` line ship in the same PR as a feature.
 
 ## Conventions
 - Prefer plain structs and maps over clever idioms.

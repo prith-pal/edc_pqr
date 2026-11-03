@@ -1,15 +1,16 @@
-# Implement Review Rubric
+# Impl Review Rubric
 
-Used by two seats:
+Used by three agents:
 
-| Seat | Uses this file to |
+| Agent | Uses this file to |
 |:--|:--|
-| `feature_implementer` | Self-check before opening or updating a PR |
-| `feature_reviewer` | Judge the PR and return findings |
+| `/lensloop impl draft` | Self-check before opening or updating a PR |
+| `feature_impl_review_approval` | Judge the PR and return findings |
+| `feature_impl_review_comment` | Leave comments only, with no verdict |
 
-## Inputs (reviewer reads only these)
+## Inputs (`feature_impl_review_*` reads only these)
 - The ticket: `_features/<id>-<slug>.md`
-- The approved plan: `.agents/runs/<id>/plan.v<P>.md`
+- The approved plan: `.agents/skills/lensloop/temp/<id>/plan_draft.v<P>.md`
 - The PR diff
 - This rubric
 
@@ -25,11 +26,11 @@ Only **blocking** issues. Each one must fit a category:
 | Unmet acceptance criterion | A checkbox in the ticket that the diff does not satisfy |
 | Plan drift | The diff skips a planned change, or adds a change the approved plan does not cover |
 
-Not findings: style, naming taste, formatting (`cargo fmt` runs automatically), refactors outside the ticket,
+Not findings: style, naming taste, formatting, refactors outside the ticket,
 "consider" suggestions, future features.
 
 ## Rules
-- At most **3** findings per version. Pick the most severe.
+- At most **10** findings per version, most severe first. Blocking issues only: no padding to reach the limit.
 - Every finding names the file and line, states the failure scenario, and gives a concrete fix.
 - No findings = approve.
 - Version 2 verifies the version-1 findings only. No new scope, unless a fix introduced a new blocking issue.
@@ -44,7 +45,7 @@ Fix: <the concrete change>
 ```
 
 ## Merge Criteria (human)
-- [ ] The latest implement review is `APPROVE`.
-- [ ] CI is green (`cargo fmt --check`, `clippy -D warnings`, `cargo test`).
+- [ ] The latest `impl_review.v<N>.md` is `APPROVE`.
+- [ ] CI is green.
 - [ ] The ticket's `status` is `done` in the diff.
-- [ ] PR title follows `CONTRIBUTING.md`.
+- [ ] The PR title follows the project's rules, if it has them.

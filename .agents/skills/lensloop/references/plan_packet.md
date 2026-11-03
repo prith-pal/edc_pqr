@@ -1,19 +1,19 @@
 # Plan Packet
 
-The contract between `feature_plan_draft` (author) and `feature_plan_review` (reviewer).
-One packet per plan version, stored at `.agents/runs/<id>/plan.v<N>.md` (local only, gitignored).
+The contract between `feature_plan_draft` (author) and `feature_plan_review_*` (reviewer).
+One packet per plan version, stored at `.agents/skills/lensloop/temp/<id>/plan_draft.v<N>.md` (local only, gitignored).
 
 ## Rules
-- The packet must stand alone: the reviewer gets the ticket, this packet and the repo, never the author's reasoning.
+- The packet must stand alone: `feature_plan_review_*` gets the ticket, this packet and the repo, never the reasoning of `feature_plan_draft`.
 - No narrative, no confidence statements ("this should work"), no pasted logs. Trimmed excerpts only.
 - Every `CHANGES` item serves a `GOALS` item. A change that serves no goal is scope creep; a goal that no change delivers is a gap.
-- `PRIOR_CHECKS` are claims. The reviewer re-runs them before trusting any result.
+- `PRIOR_CHECKS` are claims. `feature_plan_review_*` re-runs them before trusting any result.
 - Version 2 and later start with a `RESOLVED` block: one line per finding of the previous review.
 
 ## Format
 
 ```markdown
-# Plan <id> v<N>
+# Plan draft <id> v<N>
 
 ## RESOLVED (v2+ only)
 - F1 -> <what changed in this version>
@@ -47,5 +47,5 @@ One packet per plan version, stored at `.agents/runs/<id>/plan.v<N>.md` (local o
 | <lens_NNN or none> | <command or source> | <trimmed result> |
 
 ## OPEN_QUESTIONS
-- <question the human or the reviewer must answer, or "none">
+- <question the human or `feature_plan_review_*` must answer, or "none">
 ```

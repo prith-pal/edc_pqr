@@ -18,8 +18,8 @@ Examples:
 ```text
 feat: [003] encrypt text and stdin to the default identity
 fix: [004] exit 3 on truncated messages
-feat(harness): add feature_plan_draft skill
-chore(harness): link .claude to .agents
+feat(framework): add the lensloop skill
+chore(framework): link .claude to .agents
 ```
 
 | Type | Use for |
@@ -38,10 +38,10 @@ chore(harness): link .claude to .agents
 | Scope | Use for |
 |:--|:--|
 | (none) | Product work, usually with a `[<ticket id>]` |
-| `harness` | The agent framework in `.agents/`: `feat(harness)` for skills, agents and the orchestrator; `chore(harness)` for plumbing (settings, links, scripts); `ci(harness)` for workflows |
+| `framework` | The agent framework in `.agents/`: `feat(framework)` for skills and agents; `chore(framework)` for plumbing (settings, links, scripts); `ci(framework)` for workflows |
 
 - `<type>` for ticket work comes from the ticket's `type` frontmatter field.
-- Harness work has no ticket id.
+- Framework work has no ticket id.
 - Breaking changes add `!` after the type or scope: `feat(cli)!: …`.
 - Commits during review may be informal (`fix: address review on 003`). The squash folds them.
 - Keep the `Co-Authored-By` trailer of the agent that wrote the change.

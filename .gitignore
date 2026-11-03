@@ -2,5 +2,4 @@
 .DS_Store
 .agents/settings.local.json
 .agents/worktrees/
-.agents/runs/
 .claude/settings.local.json
